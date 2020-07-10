@@ -1,6 +1,5 @@
 import request from "supertest";
 import { app } from "../../app";
-import { Program } from "../../models/Program";
 
 describe("POST /api/programs", () => {
   it("returns 400 when invalid params are sent", async () => {

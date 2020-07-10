@@ -9,15 +9,7 @@ spec:
   rules:
     - http:
         paths:
-          - path: /api/users/?(.*)
-            backend:
-              serviceName: satoshi-auth-srv
-              servicePort: 3000
-          - path: /api/enrolment/?(.*)
-            backend:
-              serviceName: satoshi-enrolment-srv
-              servicePort: 3000
-          - path: /api/programs/?(.*)
+          - path: /api/?(.*) # route everything to programs service as this is just a quick test
             backend:
               serviceName: satoshi-programs-srv
               servicePort: 3000

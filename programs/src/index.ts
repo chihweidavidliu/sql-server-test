@@ -1,4 +1,3 @@
-import mongoose from "mongoose";
 import { DatabaseConnectionError } from "@satoshi-test/common";
 
 // In this project we set up our express app in a separate file so that it can be used for testing without having already specified a port
@@ -7,10 +6,6 @@ import { app } from "./app";
 const start = async () => {
   if (!process.env.JWT_KEY) {
     throw new Error("JWT_KEY must be defined");
-  }
-
-  if (!process.env.MONGO_URI) {
-    throw new Error("MONGO_URI must be defined");
   }
 
   try {
@@ -29,14 +24,6 @@ const start = async () => {
     // const result = await request.query(`SELECT * FROM dbo.Programs`);
 
     // console.log("result", result.recordsets);
-
-    await mongoose.connect(process.env.MONGO_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      useCreateIndex: true,
-    });
-
-    console.log(`Connected to MongoDb at ${process.env.MONGO_URI}`);
 
     // start up our server
     app.listen(3000, () => {

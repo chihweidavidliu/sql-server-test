@@ -41,10 +41,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var postgrator_1 = __importDefault(require("postgrator"));
 var postgrator = new postgrator_1.default({
-    // Directory containing migration files
     migrationDirectory: "./src/migrations",
     driver: "mssql",
-    // Database connection config
     host: "localhost",
     port: 1433,
     database: "TutorialDB",
