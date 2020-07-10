@@ -1,0 +1,23 @@
+{
+  "name": "database",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rm -rf ./build && tsc",
+    "migrate-db": "npm run build && node build/migrate"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mssql": "^6.2.0",
+    "node": "^14.5.0",
+    "postgrator": "^4.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^14.0.20",
+    "typescript": "^3.9.6"
+  }
+}
