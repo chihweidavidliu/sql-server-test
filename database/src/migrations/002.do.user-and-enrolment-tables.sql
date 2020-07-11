@@ -25,9 +25,11 @@ CREATE TABLE dbo.Enrolments
     program_id INT NOT NULL,
     CONSTRAINT fk_user_id 
         FOREIGN KEY (user_id)
-        REFERENCES dbo.Users(id),
+        REFERENCES dbo.Users(id)
+        ON DELETE CASCADE,
     CONSTRAINT fk_program_id 
         FOREIGN KEY (program_id)
-        REFERENCES dbo.Programs(id),
+        REFERENCES dbo.Programs(id)
+        ON DELETE CASCADE
 );
 GO

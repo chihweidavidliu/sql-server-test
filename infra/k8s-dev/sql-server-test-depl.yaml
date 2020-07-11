@@ -1,0 +1,40 @@
+# Not using persistent volumes in dev mode
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sql-server-test-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sql-server-test
+  template:
+    metadata:
+      labels:
+        app: sql-server-test
+    spec:
+      containers:
+        - name: sql-server-test
+          image: mcr.microsoft.com/mssql/server:2019-latest
+          ports:
+            - containerPort: 1433
+          env:
+            - name: ACCEPT_EULA
+              value: "Y"
+            - name: SA_PASSWORD
+              value: "23--HFEWF-f23f32wg8w3hg38gh3g3g3g3" # normally you would use a secret
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sql-server-test-srv
+spec:
+  selector:
+    app: sql-server-test
+  type: ClusterIP
+  ports:
+    - name: sql-db
+      protocol: TCP
+      port: 1433
+      targetPort: 1433

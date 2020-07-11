@@ -1,12 +1,8 @@
 import { Router, Request, Response } from "express";
 import { body } from "express-validator";
-import {
-  validateRequest,
-  COMMODITY,
-  NotFoundError,
-  UserType,
-} from "@satoshi-test/common";
+import { validateRequest, COMMODITY, UserType } from "@satoshi-test/common";
 import { getClient } from "../knex";
+import { getProgramById } from "./programsController";
 
 interface RequestUser {
   id: string;
@@ -67,27 +63,14 @@ programsRouter.post(
       .finally(() => client.destroy());
 
     const program = rows[0];
-
     res.status(201).send(program);
   }
 );
 
 programsRouter.get("/api/programs/:programId", async (req, res) => {
   const { programId } = req.params;
-  // const program = await Program.findById(programId);
-
-  const client = getClient();
-  const rows = await client
-    .from("dbo.Programs")
-    .select("id", "name", "current_price", "commodity")
-    .where("id", programId)
-    .finally(() => client.destroy());
-
-  if (!rows || !rows.length) {
-    throw new NotFoundError();
-  }
-
-  res.send(rows[0]);
+  const program = await getProgramById(programId);
+  res.send(program);
 });
 
 export { programsRouter };

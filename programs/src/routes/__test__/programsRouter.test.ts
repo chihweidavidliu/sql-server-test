@@ -1,5 +1,6 @@
 import request from "supertest";
 import { app } from "../../app";
+import { getProgramById } from "../programsController";
 
 describe("POST /api/programs", () => {
   it("returns 400 when invalid params are sent", async () => {
@@ -42,7 +43,7 @@ describe("POST /api/programs", () => {
       .expect(201);
 
     expect(response.body.name).toEqual(payload.name);
-    expect(response.body.currentPrice).toEqual(payload.currentPrice);
+    expect(response.body.current_price).toEqual(payload.currentPrice);
     expect(response.body.commodity).toEqual(payload.commodity);
   });
 
@@ -58,10 +59,10 @@ describe("POST /api/programs", () => {
       .send(payload)
       .expect(201);
 
-    const program = await Program.findById(response.body.id);
+    const program = await getProgramById(response.body.id);
 
     expect(program?.name).toEqual(payload.name);
-    expect(program?.currentPrice).toEqual(payload.currentPrice);
+    expect(program?.current_price).toEqual(payload.currentPrice);
     expect(program?.commodity).toEqual(payload.commodity);
   });
 });

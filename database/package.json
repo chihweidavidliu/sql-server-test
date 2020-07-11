@@ -1,8 +1,13 @@
 {
-  "name": "database",
-  "version": "1.0.0",
+  "name": "@chihweiliu1993/sql-server-test-database-tools",
+  "version": "1.0.5",
   "description": "",
-  "main": "index.js",
+  "main": "./build/index.js",
+  "types": "./build/index.d.ts",
+  "files": [
+    "src/**/*",
+    "build/**/*"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rm -rf ./build && tsc",
@@ -14,6 +19,7 @@
   "dependencies": {
     "mssql": "^6.2.0",
     "node": "^14.5.0",
+    "node-docker-api": "^1.1.22",
     "postgrator": "^4.0.1"
   },
   "devDependencies": {
