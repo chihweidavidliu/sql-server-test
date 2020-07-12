@@ -54,7 +54,6 @@ programsRouter.post(
   validateRequest,
   async (req: Request, res: Response) => {
     const { name, currentPrice, commodity } = req.body;
-
     const client = getClient();
 
     const rows = await client("dbo.Programs")
