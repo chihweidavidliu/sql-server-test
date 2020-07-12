@@ -15,5 +15,6 @@ jobs:
           docker build . -t chihweidavidliu/mssql-test
           docker run -d --name test-db -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=23--HFEWF-f23f32wg8w3hg38gh3g3g3g3' -p 1433:1433 chihweidavidliu/mssql-test
           npm install && npm run migrate-db
-      - run: cd ../programs && npm install && npm run test:ci
+          cd ../programs
+      - run: npm install && npm run test:ci
       - run: docker stop chihweidavidliu/mssql-test
