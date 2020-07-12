@@ -10,6 +10,7 @@ COPY configure-db.sh /usr/config/configure-db.sh
 COPY entrypoint.sh /usr/config/entrypoint.sh
 
 # Grant permissions for to our scripts to be executable
+USER root
 RUN chmod +x /usr/config/entrypoint.sh
 RUN chmod +x /usr/config/configure-db.sh
 
