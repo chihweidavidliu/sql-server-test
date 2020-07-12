@@ -1,0 +1,21 @@
+name: tests-programs
+
+on:
+  pull_request:
+    paths:
+      - "programs/**"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: |
+          cd database
+          docker build . -t chihweidavidliu/mssql-test
+          docker run -d --name test-db -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=23--HFEWF-f23f32wg8w3hg38gh3g3g3g3' -p 1433:1433 chihweidavidliu/mssql-test
+          
+      - run: npm run migrate-db
+      - run: cd ../programs && npm install && npm run test:ci
+      - run: docker stop chihweidavidliu/mssql-test
+
