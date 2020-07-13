@@ -1,5 +1,4 @@
 beforeAll(async () => {
-  // set env variables
   process.env.JWT_KEY = "agaewgg3";
 });
 
